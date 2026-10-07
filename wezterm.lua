@@ -7,4 +7,5 @@ config.font_size = 15.0
 config.window_background_opacity = 1.0 
 config.hide_tab_bar_if_only_one_tab = false 
 config.window_decorations = "RESIZE"
+config.hide_tab_bar_if_only_one_tab = true
 return config
