@@ -1,7 +1,15 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+
+# 1\. User Info
  { home.username = "janithx";
  home.homeDirectory = "/home/janithx";
  home.stateVersion = "24.11";
+
+# 2\. Symlink Neovim Configuration Directory 
+home.file.".config/nvim".source =
+ config.lib.file.mkOutOfStoreSymlink 
+"${config.home.homeDirectory}/files/home/.config/nvim";
+
  # 1\. Packages (Neovim + Kun's essential CLI tools)
  home.packages = with pkgs; [
  git
@@ -11,10 +19,12 @@
  neovim
  ];
 
+# 4. Environment Varialbes
 home.sessionVariables = {
  EDITOR = "nvim";
  };
 
+# 5\. Zsh Shell Configurations
 programs.zsh = {
  enable = true;
 autosuggestion.enable = true; # ghost text from history
@@ -34,6 +44,7 @@ co = "codex --full-auto";
  };
 };
 
+# 6\. Starship Prompt Setup
 programs.starship = {
  enable = true;
  enableZshIntegration = true;
@@ -49,5 +60,6 @@ programs.starship = {
  };
 };
 
+# 7\. Enable Home Manager
 programs.home-manager.enable = true;
 }

@@ -1,0 +1,11 @@
+local o = vim.opt
+ vim.g.mapleader = ' ' -- Space bar turns into the Leader key
+ o.expandtab = true -- Use spaces instead of tabs
+ o.shiftwidth = 2 -- 2 spaces per indent level
+ o.number = true -- Show absolute line number on current line
+ o.relativenumber = true -- Show relative line numbers for fast jumping
+ o.ignorecase = true -- Case-insensitive search by default
+ o.smartcase = true -- Case-sensitive if typing a capital letter
+ o.clipboard = 'unnamedplus' -- Share system clipboard
+ o.scrolloff = 16 -- Keep screen margin when scrolling
+ o.undofile = true -- Persistent undo across sessions
