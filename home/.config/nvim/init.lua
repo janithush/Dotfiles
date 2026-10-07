@@ -1,3 +1,3 @@
-require('vim\_config')
+require('vim_config')
 require('plugin')
 require('keys')
