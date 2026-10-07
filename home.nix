@@ -1,0 +1,1 @@
+{ pkgs, ... }: { home.username = "janithx"; home.homeDirectory = "/home/janithx"; home.stateVersion = "24.11"; home.packages = with pkgs; [ git ripgrep fd htop ]; programs.home-manager.enable = true; }
