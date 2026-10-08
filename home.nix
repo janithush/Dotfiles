@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, herdr, ... }:
+
+let
+ dotfiles = "${config.home.homeDirectory}/files"; 
+in
 
 # 1\. User Info
  { home.username = "janithx";
@@ -10,6 +14,20 @@ home.file.".config/nvim".source =
  config.lib.file.mkOutOfStoreSymlink 
 "${config.home.homeDirectory}/files/home/.config/nvim";
 
+home.file.".config/herdr".source =
+ config.lib.file.mkOutOfStoreSymlink
+ "${dotfiles}/home/.config/herdr";
+
+ home.file.".claude/settings.json".source =
+ config.lib.file.mkOutOfStoreSymlink
+ "${dotfiles}/home/.claude/settings.json";
+
+ home.file.".config/wezterm".source =
+ config.lib.file.mkOutOfStoreSymlink
+ "${dotfiles}/home/.config/wezterm";
+
+
+
  # 1\. Packages (Neovim + Kun's essential CLI tools)
  home.packages = with pkgs; [
  git
@@ -17,6 +35,7 @@ home.file.".config/nvim".source =
  fd
  htop
  neovim
+ herdr.packages.${pkgs.system}.default
  ];
 
 # 4. Environment Varialbes
@@ -58,6 +77,16 @@ programs.starship = {
  };
  cmd_duration.format = "[$duration]($style) ";
  };
+};
+
+programs.git = {
+ enable = true;
+ settings = {
+ user = {
+ name = "janithush";
+ email = "janith.ushanthaapple@gmail.com";
+ };
+};
 };
 
 # 7\. Enable Home Manager

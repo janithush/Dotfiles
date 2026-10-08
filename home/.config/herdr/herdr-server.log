@@ -1,0 +1,40 @@
+2026-10-08T13:17:38.574392Z  INFO herdr::api::server: api server listening path=/home/janithx/.config/herdr/herdr.sock
+2026-10-08T13:17:38.575681Z  INFO herdr::persist::io: session file is missing event="persist.restore" subsystem="persist" outcome="missing" path=/home/janithx/.config/herdr/session.json
+2026-10-08T13:17:38.575783Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-10-08T13:17:40.220063Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-10-08T13:17:40.221005Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=40 cols=119 scrollback_limit_bytes=10000000
+2026-10-08T13:17:40.222294Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=154110
+2026-10-08T13:17:40.222571Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w1" pane_id=1
+2026-10-08T13:17:40.222580Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-10-08T13:17:40.222584Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-10-08T13:17:40.222589Z  INFO herdr::server::headless::bootstrap: created startup workspace cwd=/home/janithx/files
+2026-10-08T13:17:40.222661Z  INFO herdr::server::headless: client protocol socket listening path=/home/janithx/.config/herdr/herdr-client.sock
+2026-10-08T13:17:40.222697Z  INFO herdr::server::headless::bootstrap: herdr server started api_socket=/home/janithx/.config/herdr/herdr.sock client_socket=/home/janithx/.config/herdr/herdr-client.sock
+2026-10-08T13:17:40.222953Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=154090
+2026-10-08T13:17:40.275700Z  INFO herdr::server::headless: client connected client_id=2 cols=54 rows=24 cell_width_px=8 cell_height_px=16 surface_active=true render_encoding=SemanticFrame
+2026-10-08T13:17:45.229791Z  INFO herdr::persist::writer: preserved session recovery copy event="persist.backup" subsystem="persist" outcome="ok" path=/home/janithx/.config/herdr/session.json backup_path=/home/janithx/.config/herdr/session-snapshots/session-000000000000000000001791465465225384915-154090-0.json
+2026-10-08T13:17:45.229897Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/janithx/.config/herdr/session.json workspaces=1
+2026-10-08T13:20:19.622871Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-10-08T13:20:19.623260Z  INFO herdr::pane: pane session terminated pane=1 pid=154110 signal=Hangup
+2026-10-08T13:20:19.623561Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=24 cols=53 scrollback_limit_bytes=10000000
+2026-10-08T13:20:19.625149Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=154779
+2026-10-08T13:20:19.626184Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w2" pane_id=2
+2026-10-08T13:20:19.626205Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-10-08T13:20:19.626212Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-10-08T13:20:24.640318Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/janithx/.config/herdr/session.json workspaces=1
+2026-10-08T13:20:29.365484Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 0, signal: None }"
+2026-10-08T13:20:29.365732Z  INFO herdr::pane: pane session terminated pane=2 pid=154779 signal=Hangup
+2026-10-08T13:20:29.366131Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=24 cols=53 scrollback_limit_bytes=10000000
+2026-10-08T13:20:29.367642Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=154824
+2026-10-08T13:20:29.367842Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w3" pane_id=3
+2026-10-08T13:20:29.367849Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w3"
+2026-10-08T13:20:29.367854Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w3" tab_id="w3:t1"
+2026-10-08T13:20:33.013255Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=3 status="ExitStatus { code: 0, signal: None }"
+2026-10-08T13:20:33.013484Z  INFO herdr::pane: pane session terminated pane=3 pid=154824 signal=Hangup
+2026-10-08T13:20:33.013671Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=4 rows=24 cols=53 scrollback_limit_bytes=10000000
+2026-10-08T13:20:33.015483Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=4 pid=154844
+2026-10-08T13:20:33.015748Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w4" pane_id=4
+2026-10-08T13:20:33.015757Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w4"
+2026-10-08T13:20:33.015768Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w4" tab_id="w4:t1"
+2026-10-08T13:20:38.032410Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/home/janithx/.config/herdr/session.json workspaces=1
+2026-10-08T13:20:43.003706Z  INFO herdr::server::headless: client detached client_id=2
