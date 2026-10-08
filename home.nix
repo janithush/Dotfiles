@@ -27,6 +27,14 @@ home.file.".config/herdr".source =
  "${dotfiles}/home/.config/wezterm";
 
 
+home.file.".claude/CLAUDE.md".source =
+  config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
+home.file.".codex/AGENTS.md".source =
+  config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
+home.file.".config/opencode/AGENTS.md".source =
+  config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
+
+
 
  # 1\. Packages (Neovim + Kun's essential CLI tools)
  home.packages = with pkgs; [
@@ -36,6 +44,7 @@ home.file.".config/herdr".source =
  htop
  neovim
  herdr.packages.${pkgs.system}.default
+ nodejs
  ];
 
 # 4. Environment Varialbes

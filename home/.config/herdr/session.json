@@ -2,11 +2,11 @@
   "version": 3,
   "workspaces": [
     {
-      "id": "w4",
+      "id": "wA",
       "custom_name": null,
       "identity_cwd": "/home/janithx",
       "public_pane_numbers": {
-        "4": 1
+        "10": 1
       },
       "next_public_pane_number": 2,
       "public_tab_numbers": [
@@ -17,16 +17,16 @@
         {
           "custom_name": null,
           "layout": {
-            "Pane": 4
+            "Pane": 10
           },
           "panes": {
-            "4": {
+            "10": {
               "cwd": "/home/janithx"
             }
           },
           "zoomed": false,
-          "focused": 4,
-          "root_pane": 4
+          "focused": 10,
+          "root_pane": 10
         }
       ],
       "active_tab": 0
