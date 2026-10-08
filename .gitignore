@@ -1,1 +1,7 @@
 *.log
+
+# Herdr Runtime State & Logs
+home/.config/herdr/*.log
+home/.config/herdr/*.sock
+home/.config/herdr/session.json
+home/.config/herdr/session-snapshots/
