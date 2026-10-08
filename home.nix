@@ -48,7 +48,7 @@ programs.zsh = {
  enable = true;
 autosuggestion.enable = true; # ghost text from history
 syntaxHighlighting.enable = true; # commands turn green when valid
-initExtra = ''
+initContent = ''
 bindkey '^f' autosuggest-accept 
 '';
 
@@ -81,12 +81,10 @@ programs.starship = {
 
 programs.git = {
  enable = true;
- settings = {
- user = {
+ settings.user = {
  name = "janithush";
  email = "janith.ushanthaapple@gmail.com";
  };
-};
 };
 
 # 7\. Enable Home Manager
