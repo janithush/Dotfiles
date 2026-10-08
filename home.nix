@@ -1,102 +1,119 @@
 { config, pkgs, herdr, ... }:
 
 let
- dotfiles = "${config.home.homeDirectory}/files"; 
+  dotfiles = "${config.home.homeDirectory}/files";
 in
+{
+  home.username = "janithx";
+  home.homeDirectory = "/home/janithx";
+  home.stateVersion = "24.11";
 
-# 1\. User Info
- { home.username = "janithx";
- home.homeDirectory = "/home/janithx";
- home.stateVersion = "24.11";
+  # Symlinks (out-of-store)
+  home.file.".config/herdr/config.toml".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr/config.toml";
 
-# 2\. Symlink Neovim Configuration Directory 
-home.file.".config/nvim".source =
- config.lib.file.mkOutOfStoreSymlink 
-"${config.home.homeDirectory}/files/home/.config/nvim";
+  home.file.".config/nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/nvim";
 
-home.file.".config/herdr".source =
- config.lib.file.mkOutOfStoreSymlink
- "${dotfiles}/home/.config/herdr";
+  home.file.".config/wezterm".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/wezterm";
 
- home.file.".claude/settings.json".source =
- config.lib.file.mkOutOfStoreSymlink
- "${dotfiles}/home/.claude/settings.json";
+  home.file.".claude/settings.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
 
- home.file.".config/wezterm".source =
- config.lib.file.mkOutOfStoreSymlink
- "${dotfiles}/home/.config/wezterm";
+  home.file.".claude/CLAUDE.md".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
+  home.file.".codex/AGENTS.md".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
+  home.file.".config/opencode/AGENTS.md".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
 
+  # Packages - fully declarative CLI tools only
+  home.packages = with pkgs; [
+    neovim
+    ripgrep
+    fd
+    htop
+    jq
+    nodejs
+    eza
+    bat
+    lazygit
+    opencode
+    claude-code
+    herdr.packages.${pkgs.system}.default
+  ];
 
-home.file.".claude/CLAUDE.md".source =
-  config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
-home.file.".codex/AGENTS.md".source =
-  config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
-home.file.".config/opencode/AGENTS.md".source =
-  config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
+  # Environment Variables
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
+  # Declarative Programs & CLI Tools
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "https";
+    };
+  };
 
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = "janithush";
+        email = "janith.ushanthaapple@gmail.com";
+      };
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      push.autoSetupRemote = true;
+    };
+  };
 
- # 1\. Packages (Neovim + Kun's essential CLI tools)
- home.packages = with pkgs; [
- git
- ripgrep
- fd
- htop
- neovim
- herdr.packages.${pkgs.system}.default
- nodejs
- gh
- ];
+  programs.fzf.enable = true;
+  programs.zoxide.enable = true;
 
-# 4. Environment Varialbes
-home.sessionVariables = {
- EDITOR = "nvim";
- };
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
-# 5\. Zsh Shell Configurations
-programs.zsh = {
- enable = true;
-autosuggestion.enable = true; # ghost text from history
-syntaxHighlighting.enable = true; # commands turn green when valid
-initContent = ''
-bindkey '^f' autosuggest-accept 
-'';
+  # Zsh Shell Configuration
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    initContent = ''
+      bindkey '^f' autosuggest-accept
+      eval "$(zoxide init zsh)"
+    '';
 
-shellAliases = {
-".." = "cd ..";
-add = "git add .";
-push = "git push";
-pull = "git pull";
-m = "git switch main";
-cc = "claude --dangerously-skip-permissions";
-co = "codex --full-auto";
- };
-};
+    shellAliases = {
+      ".." = "cd ..";
+      add = "git add .";
+      push = "git push";
+      pull = "git pull";
+      m = "git switch main";
+      cc = "claude --dangerously-skip-permissions";
+      co = "codex --full-auto";
+    };
+  };
 
-# 6\. Starship Prompt Setup
-programs.starship = {
- enable = true;
- enableZshIntegration = true;
- settings = {
- add_newline = false;
- format =
- "$directory$git_branch$git_status$cmd_duration$line_break$character";
- character = {
- success_symbol = "[❯](purple)";
- error_symbol = "[❯](red)";
- };
- cmd_duration.format = "[$duration]($style) ";
- };
-};
+  # Starship Prompt Setup
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      add_newline = false;
+      format = "$directory$git_branch$git_status$cmd_duration$line_break$character";
+      character = {
+        success_symbol = "[❯](purple)";
+        error_symbol = "[❯](red)";
+      };
+      cmd_duration.format = "[$duration]($style) ";
+    };
+  };
 
-programs.git = {
- enable = true;
- settings.user = {
- name = "janithush";
- email = "janith.ushanthaapple@gmail.com";
- };
-};
-
-# 7\. Enable Home Manager
-programs.home-manager.enable = true;
+  # Enable Home Manager
+  programs.home-manager.enable = true;
 }

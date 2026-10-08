@@ -14,9 +14,12 @@ herdr = {
 
  outputs = {self, nixpkgs, home-manager, herdr, ... }:
 
-  let
-     system = "x86_64-linux";
-	pkgs = nixpkgs.legacyPackages.${system};
+   let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
 	 in{
 
 
