@@ -10,3 +10,29 @@
   If something clearly looks off, even if it is not directly related to what you are doing, try to get it fixed along the way.
 - Apply that same high standard to engineering excellence: lint, test failures, and test flakiness.
   If you see one, even if it is not caused by what you are working on right now, still get it fixed.
+
+## Agent coverage
+
+- These rules apply uniformly to Claude Code, OpenCode, and Codex agent harnesses.
+- No MCP servers. Rely strictly on AXI principles and CLI tools.
+
+## AXI ergonomics
+
+- Prefer `gh-axi` for GitHub operations over standard heavy `gh` CLI flows.
+- Prefer `chrome-devtools-axi` for browser tasks over MCP-based browser tooling.
+- Prefer `lavish-axi` surfaces where a visual plan helps before implementation.
+
+## Lavish planning
+
+- Use Lavish HTML visual surfaces for complex UI and feature planning before writing code.
+- Keep the visual plan small, focused, and tied to acceptance criteria.
+
+## Treehouse and Firstmate
+
+- Respect isolated git worktrees (`treehouse`) for parallel tasks. Do not mix unrelated work in one worktree.
+- Respect Firstmate supervisor coordination when running multi-agent or long-running work.
+
+## No mistakes and GNHF
+
+- Pass completed changes through the `no-mistakes` PR validation pipeline before requesting review.
+- Use `gnhf` (Good Night, Have Fun) for long-running and overnight autonomous loops.

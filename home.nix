@@ -47,6 +47,9 @@ in
   # Environment Variables
   home.sessionVariables = {
     EDITOR = "nvim";
+    # OpenRouter / Omni Router API Proxy Routing for Claude, OpenCode & Codex Harnesses
+    ANTHROPIC_BASE_URL = "https://openrouter.ai/api/v1";
+    # OPENROUTER_API_KEY = "your-key-here"; # Placeholder for local environment override
   };
 
   # Declarative Programs & CLI Tools
