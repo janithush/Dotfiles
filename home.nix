@@ -45,6 +45,7 @@ home.file.".config/opencode/AGENTS.md".source =
  neovim
  herdr.packages.${pkgs.system}.default
  nodejs
+ gh
  ];
 
 # 4. Environment Varialbes
