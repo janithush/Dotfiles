@@ -5,17 +5,17 @@ config.color_scheme = "rose-pine-moon"
 config.font = wezterm.font("Hack Nerd Font")
 config.font_size = 15.0
 config.window_background_opacity = 0.0
--- Tabbed system backdrop renders the wallpaper tint cleanly at zero opacity;
--- partial alpha (e.g. 0.98) alongside a DWM backdrop causes gray-patch artifacts
-config.win32_system_backdrop = "Tabbed"
+-- Mica backdrop at zero opacity: wallpaper tint renders cleanly, no DWM
+-- gray patches (partial alpha alongside a backdrop is what caused them)
+config.win32_system_backdrop = "Mica"
 -- Text cells stay fully opaque so background bleed never hurts readability
 config.text_background_opacity = 1.0
--- Full borderless: no titlebar, no buttons (NONE also drops the resize border,
--- so resizing uses OS shortcuts; move via CTRL-SHIFT + Left-drag)
-config.window_decorations = "NONE"
--- Tab bar disabled: move via CTRL-SHIFT + Left-drag (no buttons by design)
-config.enable_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = true
+-- Borderless with working resize border; DWM re-adds dead min/max/close
+-- buttons while any system backdrop is set (upstream wezterm#3598, still open)
+config.window_decorations = "RESIZE"
+-- Tab bar back on as the visible drag handle
+config.enable_tab_bar = true
+config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = false
 -- CTRL-SHIFT + Left-drag anywhere moves the window across monitors
 config.mouse_bindings = {
