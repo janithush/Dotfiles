@@ -1,7 +1,13 @@
-{ config, pkgs, herdr, ... }:
+{ config, pkgs, herdr, no-mistakes, treehouse, ... }:
 
 let
   dotfiles = "${config.home.homeDirectory}/files";
+  npmGlobal = "${config.home.homeDirectory}/.npm-global";
+  # Linux-native AXI CLIs via pinned npx wrappers (zero Windows dependency).
+  # Upstream recommends zero-setup `npx -y <pkg>`; wrappers pin versions for reproducibility.
+  axiNpx = pkg: ver: pkgs.writeShellScriptBin pkg ''
+    exec ${pkgs.nodejs}/bin/npx -y ${pkg}@${ver} "$@"
+  '';
 in
 {
   home.username = "janithx";
@@ -42,7 +48,23 @@ in
     opencode
     claude-code
     herdr.packages.${pkgs.system}.default
+    # Trusted Flakes (Go, Nix-native)
+    no-mistakes.packages.${pkgs.system}.default
+    treehouse.packages.${pkgs.system}.default
+    # Trusted npm AXI tools, Linux-native via pinned npx wrappers (no /mnt/c dependency)
+    # quota-axi is the canonical name (replaces earlier quokka-axi reference)
+    (axiNpx "gh-axi" "0.1.36")
+    (axiNpx "chrome-devtools-axi" "0.1.39")
+    (axiNpx "lavish-axi" "0.1.85")
+    (axiNpx "quota-axi" "0.1.60")
+    (axiNpx "gnhf" "0.1.51")
+    # Lab tools (mobbin-axi, chezmoi-axi, design-system-axi, playwright-axi) stay in ~/lab/, NOT here
   ];
+
+  # Linux-native npm global prefix (Nix store nodejs root is read-only).
+  # Keeps `*-axi setup hooks` global installs inside WSL ext4, never Windows npm.
+  home.file.".npmrc".text = "prefix=${npmGlobal}\n";
+  home.sessionPath = [ "${npmGlobal}/bin" ];
 
   # Environment Variables
   home.sessionVariables = {

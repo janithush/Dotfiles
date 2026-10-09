@@ -6,13 +6,23 @@
  };
 
 
-herdr = {
- url = "github:herdrdev/herdr";
- inputs.nixpkgs.follows = "nixpkgs";
- };
+ herdr = {
+  url = "github:herdrdev/herdr";
+  inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+ no-mistakes = {
+  url = "github:kunchenguid/no-mistakes";
+  inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+ treehouse = {
+  url = "github:kunchenguid/treehouse";
+  inputs.nixpkgs.follows = "nixpkgs";
+  };
 };
 
- outputs = {self, nixpkgs, home-manager, herdr, ... }:
+  outputs = {self, nixpkgs, home-manager, herdr, no-mistakes, treehouse, ... }:
 
    let
       system = "x86_64-linux";
@@ -27,7 +37,7 @@ herdr = {
   homeConfigurations."janithx" = home-manager.lib.homeManagerConfiguration { 
 inherit pkgs;
  modules = [ ./home.nix ];
-extraSpecialArgs = { inherit herdr; };
+extraSpecialArgs = { inherit herdr no-mistakes treehouse; };
  };
  };
  }
