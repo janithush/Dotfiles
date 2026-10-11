@@ -76,6 +76,9 @@ in
     ANTHROPIC_MODEL = "openrouter/cohere/north-mini-code:free";
     ANTHROPIC_DEFAULT_HAIKU_MODEL = "openrouter/cohere/north-mini-code:free";
     ANTHROPIC_DEFAULT_SONNET_MODEL = "openrouter/cohere/north-mini-code:free";
+    # Security: OmniRoute gateway enforces REQUIRE_API_KEY=true (server-side in ~/.omniroute/.env).
+    # Harnesses must send ANTHROPIC_AUTH_TOKEN on every request.
+    REQUIRE_API_KEY = "true";
   };
 
   # Declarative Programs & CLI Tools
