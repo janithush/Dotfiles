@@ -69,9 +69,13 @@ in
   # Environment Variables
   home.sessionVariables = {
     EDITOR = "nvim";
-    # OpenRouter / Omni Router API Proxy Routing for Claude, OpenCode & Codex Harnesses
-    ANTHROPIC_BASE_URL = "https://openrouter.ai/api/v1";
-    # OPENROUTER_API_KEY = "your-key-here"; # Placeholder for local environment override
+    # OmniRoute local gateway (2026-10-10): all harnesses route via WSL2 gateway
+    ANTHROPIC_BASE_URL = "http://localhost:20128";
+    # Secret - kept as local override, NOT committed (see bashrc + per-panel exports):
+    # ANTHROPIC_AUTH_TOKEN = "<Endpoint key from dashboard>";
+    ANTHROPIC_MODEL = "openrouter/cohere/north-mini-code:free";
+    ANTHROPIC_DEFAULT_HAIKU_MODEL = "openrouter/cohere/north-mini-code:free";
+    ANTHROPIC_DEFAULT_SONNET_MODEL = "openrouter/cohere/north-mini-code:free";
   };
 
   # Declarative Programs & CLI Tools
