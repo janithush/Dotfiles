@@ -79,6 +79,7 @@ in
     # Security: OmniRoute gateway enforces REQUIRE_API_KEY=true (server-side in ~/.omniroute/.env).
     # Harnesses must send ANTHROPIC_AUTH_TOKEN on every request.
     REQUIRE_API_KEY = "true";
+    ANTHROPIC_API_KEY = "sk-omniroute";
   };
 
   # Declarative Programs & CLI Tools
