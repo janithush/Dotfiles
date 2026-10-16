@@ -1,0 +1,54 @@
+{
+  "$schema": "orchestration-rules-v1",
+  "updated": "2026-10-11",
+  "architecture": "dual-key-native",
+  "roles": {
+    "firstmate_orchestrator": {
+      "harness": "opencode-native-wsl2",
+      "model": "opencode/nemotron-3.5-lightning-free",
+      "credential": "key-01",
+      "note": "Master orchestrator. Free-tier models only resolve inside the OpenCode harness."
+    },
+    "heavy_logic_crewmate": {
+      "harness": "opencode-native",
+      "model": "opencode/nemotron-3.5-lightning-free",
+      "credential": "key-02",
+      "routing": "direct-native-bypass-omniroute",
+      "note": "Highest-complexity task delegate. Bypasses OmniRoute proxy to prevent account restrictions."
+    },
+    "dev_crewmates": {
+      "harness": "claude-code",
+      "backend": "omniroute-combo-stage1-code-gen",
+      "note": "General feature development and code generation."
+    }
+  },
+  "workflow": {
+    "development_first": true,
+    "auto_review_during_development": false,
+    "review_trigger": "user-explicit-command-only-after-development-complete",
+    "review_tool_mandatory": "no-mistakes",
+    "review_tool_harness_compatible": ["claude-code", "opencode"],
+    "review_tool_requires_claude_code": false
+  },
+  "review_hierarchy": {
+    "primary": {
+      "harness": "opencode",
+      "credential": "key-02",
+      "fallback_sequence": [
+        { "rank": 1, "name": "Nemotron 3 Ultra Free", "native_id": "opencode/nemotron-3-ultra-free", "resolved": true, "status": "Rank 1 Primary Active. Server recognizes the model ID (bogus-ID control returns upstream-unavailable while this ID returns the in-harness free-tier gate). Streams only inside the OpenCode harness by design; user manually verified functional under Zen." },
+        { "rank": 2, "name": "Big Pickle", "native_id": "opencode/big-pickle", "resolved": true },
+        { "rank": 3, "name": "Nemotron 3.5 Lightning Free", "native_id": "opencode/nemotron-3.5-lightning-free", "resolved": true },
+        { "rank": 4, "name": "Muse Spark 1.3 Free", "native_id": "opencode/muse-spark-1.3-contributor-free", "resolved": true },
+        { "rank": 5, "name": "MiMo-V2.6-Flash Free", "native_id": "opencode/mimo-v2.6-flash-free", "resolved": true }
+      ],
+      "skip_rule": "Skip unresolved entries in order; never fail the chain on a missing model."
+    },
+    "fallback": {
+      "harness": "claude-code",
+      "backend": "omniroute-combo-stage2-strict-review",
+      "models": ["nvidia/z-ai/glm-5.3", "nvidia/nvidia/nemotron-3-ultra-550b-a55b", "gemini/gemini-3.8-flash"],
+      "condition": "primary-unavailable-or-failed"
+    }
+  },
+  "preserved_intact": ["omniroute-stage1-combo", "omniroute-stage2-combo", "key-safety-rules", "omniroute-failover-structure"]
+}

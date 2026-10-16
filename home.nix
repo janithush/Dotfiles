@@ -33,6 +33,11 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
   home.file.".config/opencode/AGENTS.md".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/AGENTS.md";
+  home.file.".config/opencode/opencode.jsonc".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/opencode/opencode.jsonc";
+  home.file.".config/opencode/orchestration-rules.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/opencode/orchestration-rules.json";
+
 
   # Packages - fully declarative CLI tools only
   home.packages = with pkgs; [
@@ -73,13 +78,14 @@ in
     ANTHROPIC_BASE_URL = "http://localhost:20128";
     # Secret - kept as local override, NOT committed (see bashrc + per-panel exports):
     # ANTHROPIC_AUTH_TOKEN = "<Endpoint key from dashboard>";
-    ANTHROPIC_MODEL = "openrouter/cohere/north-mini-code:free";
-    ANTHROPIC_DEFAULT_HAIKU_MODEL = "openrouter/cohere/north-mini-code:free";
-    ANTHROPIC_DEFAULT_SONNET_MODEL = "openrouter/cohere/north-mini-code:free";
+    ANTHROPIC_MODEL = "stage1-code-gen";
+    ANTHROPIC_DEFAULT_HAIKU_MODEL = "stage1-code-gen";
+    ANTHROPIC_DEFAULT_SONNET_MODEL = "stage1-code-gen";
     # Security: OmniRoute gateway enforces REQUIRE_API_KEY=true (server-side in ~/.omniroute/.env).
     # Harnesses must send ANTHROPIC_AUTH_TOKEN on every request.
     REQUIRE_API_KEY = "true";
     ANTHROPIC_API_KEY = "sk-omniroute";
+    CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT = "1";
   };
 
   # Declarative Programs & CLI Tools

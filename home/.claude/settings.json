@@ -1,4 +1,4 @@
 {
-  "theme": "dark-ansi",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi"
 }
