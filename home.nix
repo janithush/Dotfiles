@@ -63,6 +63,7 @@ in
     (axiNpx "lavish-axi" "0.1.85")
     (axiNpx "quota-axi" "0.1.60")
     (axiNpx "gnhf" "0.1.51")
+    (axiNpx "omniroute" "3.8.51")
     # Lab tools (mobbin-axi, chezmoi-axi, design-system-axi, playwright-axi) stay in ~/lab/, NOT here
   ];
 
